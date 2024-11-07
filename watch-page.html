@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Website</title>
+    <!-- main style here -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- vid-description page style -->
+     <link rel="stylesheet" href="watch-page.css">
+    <!-- google material icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined" rel="stylesheet">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- header start -->
+    <header class="header">
+        <div class="container">
+            <div class="row v-center">
+                <div class="header-item item-left">
+                    <div class="logo">
+                        <a href="index.html"><img src="assets/Flexico1.png" alt="logo"></a>
+                    </div>
+                    <!-- search bar here -->
+                </div>
+
+                          
+                <!-- menu start here -->
+                <div class="header-item item-center">
+                    <div class="menu-overlay">
+                        
+                    </div>
+                    <nav class="menu">
+                        <div class="mobile-menu-head">
+                          <div class="go-back">
+                            <i class="fas fa-chevron-left"></i>
+                          </div>
+                          <div class="current-menu-title"></div>
+                          <div class="mobile-menu-close">&times;</div>  
+                        </div>
+                        <ul class="menu-main">
+                            <li class="home-icon">
+                                <a href="index.html"><i class="fas fa-home"></i>Home</a>
+                            </li>
+                            <li class="menu-item-has-children">
+                                <a href="watch-in-collections.html">Collections
+                                </a>
+                            </li>
+                            <li class="menu-item-has-children">
+                                <a href="shows.html">Shows
+                                </a>
+                                
+                            </li>
+                            <li>
+                                <a href="watch-best-movies.html">Best Movies</a>
+                            </li>
+                            <li>
+                                <a href="watch-discover.html">Discover</a>
+                            </li>
+                            
+                        </ul>
+                    </nav>
+                </div>
+                <!-- menu end here -->
+                <div class="header-item item-right">
+                        <div class="search-bar">
+                            <input type="text" id="movie-search" placeholder="Search for movies..." oninput="suggestMovies()" autocomplete="off">
+                            <div id="suggestions" class="suggestions-box"></div>
+                        </div>
+                          
+                    <a href="#">
+                        <i class="fas fa-bookmark"></i>
+                    </a>
+
+                        <!-- Mobile menu trigger -->
+                         <div class="mobile-menu-trigger">
+                            <span></span>
+                         </div>
+                </div>
+            </div>
+        </div>
+     </header>
+     <!-- header end -->
+
+     <div class="video-container vid-description-container">
+        <div class="poster">
+            <img id="movie-poster" src="" alt="Movie Poster">
+        </div>
+        <div class="content">
+        <h1 id="movie-title"></h1>
+        <div class="ratings">
+            <span class="rating">IMDb 7.8</span>
+            <span class="rating">RT 95%</span>
+            <span class="rating">87%</span>
+        </div>
+        <div id="movie-rating" class="rating"></div>
+        <div id="movie-release-date"></div>
+        <div class="cta">
+            <a href="in-vid-play-page.html"><button class="watch-btn"><i class="fas fa-play"></i> Watch Free</button></a>
+            <button class="icon-btn"><i class="fas fa-bookmark"></i></button>
+            <button class="icon-btn"><i class="fas fa-film"></i></button>
+            <button class="icon-btn"><i class="fas fa-check"></i></button>
+            <button class="icon-btn"><i class="fas fa-share-alt"></i></button>
+        </div>
+        <p id="movie-description"></p>
+        <div id="movie-runtime"></div>
+        <div id="movie-genres"></div>
+        <div id="movie-cast"></div>
+        </div>
+    </div>    
+
+     <!-- vides description start here -->
+     <!-- <div class="vid-description-container">
+        <div class="poster">
+            <img src="assets/poster1-6.jpg" alt="Movie Poster">
+        </div>
+        <div class="content">
+            <h1>Night of the Living Dead</h1>
+            <div class="director">Directed by George A. Romero</div>
+            <div class="meta">
+                <span>1968</span>
+                <span>1h 36m</span>
+                <span>Not Rated</span>
+            </div>
+            <div class="meta">
+                <span class="genre">Horror</span>
+                <span class="genre">Thriller</span>
+            </div>
+            <div class="ratings">
+                <span class="rating">IMDb 7.8</span>
+                <span class="rating">RT 95%</span>
+                <span class="rating">87%</span>
+            </div>
+            <div class="cta">
+                <button class="watch-btn">Watch Free</button>
+                <button class="icon-btn"><i class="fas fa-bookmark"></i></button>
+                <button class="icon-btn"><i class="fas fa-film"></i></button>
+                <button class="icon-btn"><i class="fas fa-check"></i></button>
+                <button class="icon-btn"><i class="fas fa-share-alt"></i></button>
+            </div>
+            <p class="synopsis">
+                As a relentless horde of flesh-eating zombies descends upon a secluded farmhouse, a
+                diverse group of strangers must confront their fears and each other, battling both the
+                undead menace and the chaos of human desperation in this chilling horror classic.
+            </p>
+        </div>
+    </div> -->
+
+    <!-- cast section start here -->
+    <div class="cast-carousel-container">
+        <h1>Cast of Night of the Living Dead</h1>
+        <div class="cast-carousel-wrapper">
+            <div class="cast-carousel" id="castCarousel">
+                <!-- Cast items will be dynamically added here -->
+            </div>
+        </div>
+        <button class="nav-button" id="prevBtn">&lt;</button>
+        <button class="nav-button" id="nextBtn">&gt;</button>
+    </div>
+
+    <!-- movie reviews section -->
+    <div class="review-carousel-container">
+        <h1>Night of the Living Dead Reviews</h1>
+        <div class="review-carousel-wrapper">
+            <div class="review-carousel" id="reviewCarousel">
+                <div class="review-carousel-item">
+                    <div class="review-card">
+                        <div class="review-source">Chicago Sun-Times</div>
+                        <div class="review-author">Roger Ebert</div>
+                        <div class="review-content">I felt real terror in that neighborhood theater last Saturday afternoon. I saw kids who had no resources they could draw upon to protect themselves from...</div>
+                    </div>
+                </div>
+                <div class="review-carousel-item">
+                    <div class="review-card">
+                        <div class="review-source">Slant Magazine</div>
+                        <div class="review-author">Jeremiah Kipp</div>
+                        <div class="review-content">There's a brute force in Night of the Living Dead that catches one in the throat.</div>
+                    </div>
+                </div>
+                <div class="review-carousel-item">
+                    <div class="review-card">
+                        <div class="review-source">Film Frenzy</div>
+                        <div class="review-author">Matt Brunson</div>
+                        <div class="review-content">A landmark of American cinema. Intentional or not, the film's sociopolitical content remains as potent as ever.</div>
+                    </div>
+                </div>
+                <div class="review-carousel-item">
+                    <div class="review-card">
+                        <div class="review-source">New York Daily News</div>
+                        <div class="review-author">Ann Guarino</div>
+                        <div class="review-content">The title immediately cues a tale of horror; but does not prepare one for the shocking treatment of the dead... The theme could not be in poorer...</div>
+                    </div>
+                </div>
+                <div class="review-carousel-item">
+                    <div class="review-card">
+                        <div class="review-source">Chicago Sun-Times</div>
+                        <div class="review-author">Roger Ebert</div>
+                        <div class="review-content">I felt real terror in that neighborhood theater last Saturday afternoon. I saw kids who had no resources they could draw upon to protect themselves from...</div>
+                    </div>
+                </div>
+                <div class="review-carousel-item">
+                    <div class="review-card">
+                        <div class="review-source">Slant Magazine</div>
+                        <div class="review-author">Jeremiah Kipp</div>
+                        <div class="review-content">There's a brute force in Night of the Living Dead that catches one in the throat.</div>
+                    </div>
+                </div>
+                <div class="review-carousel-item">
+                    <div class="review-card">
+                        <div class="review-source">Film Frenzy</div>
+                        <div class="review-author">Matt Brunson</div>
+                        <div class="review-content">A landmark of American cinema. Intentional or not, the film's sociopolitical content remains as potent as ever.</div>
+                    </div>
+                </div>
+                <div class="review-carousel-item">
+                    <div class="review-card">
+                        <div class="review-source">New York Daily News</div>
+                        <div class="review-author">Ann Guarino</div>
+                        <div class="review-content">The title immediately cues a tale of horror; but does not prepare one for the shocking treatment of the dead... The theme could not be in poorer...</div>
+                    </div>
+                </div>
+                <!-- Add more carousel items as needed -->
+            </div>
+        </div>
+        <button class="carousel-button carousel-button-left" id="prevButton">&lt;</button>
+        <button class="carousel-button carousel-button-right" id="nextButton">&gt;</button>
+    </div>
+    
+     <!-- most popular in nigeria start here -->
+    <div class="most-popular-in-nigeria-container">
+        <h2 class="popular-in-nigeria-title">Most Popular In Nigeria &gt;</h2>
+        <div class="popular-in-nigeria-carousel">
+            <div class="popular-in-nigeria-item">
+                <img src="assets/poster1-5.jpg" alt="Wiseguy">
+                <h3>Wiseguy</h3>
+                <p>1970</p>
+            </div>
+            <div class="popular-in-nigeria-item">
+                <img src="assets/poster1-5.jpg" alt="Pee-wee's Playhouse">
+                <h3>Pee-wee's Playhouse</h3>
+                <p>2000</p>
+            </div>
+            <div class="popular-in-nigeria-item">
+                <img src="assets/poster1-5.jpg" alt="Farscape">
+                <h3>Farscape</h3>
+                <p>2001</p>
+            </div>
+            <div class="popular-in-nigeria-item">
+                <img src="assets/poster1-5.jpg" alt="21 Jump Street">
+                <h3>21 Jump Street</h3>
+                <p>1971</p>
+            </div>
+            <div class="popular-in-nigeria-item">
+                <img src="assets/poster1-5.jpg" alt="Top Million Dollar Agent">
+                <h3>Top Million Dollar Agent</h3>
+                <p>2005</p>
+            </div>
+            <div class="popular-in-nigeria-item">
+                <img src="assets/poster1-5.jpg" alt="The Transporter (2022)">
+                <h3>The Transporter (2022)</h3>
+                <p>2022</p>
+            </div>
+            <div class="popular-in-nigeria-item">
+                <img src="assets/poster1-5.jpg" alt="Wiseguy">
+                <h3>Wiseguy</h3>
+                <p>2021</p>
+            </div>
+            <div class="popular-in-nigeria-item">
+                <img src="assets/poster1-5.jpg" alt="Pee-wee's Playhouse">
+                <h3>Pee-wee's Playhouse</h3>
+                <p>1999</p>
+            </div>
+            <div class="popular-in-nigeria-item">
+                <img src="assets/poster1-5.jpg" alt="Farscape">
+                <h3>Farscape</h3>
+                <p>2018</p>
+            </div>
+            <div class="popular-in-nigeria-item">
+                <img src="assets/poster1-5.jpg" alt="21 Jump Street">
+                <h3>21 Jump Street</h3>
+                <p>2010</p>
+            </div>
+            <div class="popular-in-nigeria-item">
+                <img src="assets/poster1-5.jpg" alt="Top Million Dollar Agent">
+                <h3>Top Million Dollar Agent</h3>
+                <p>2019</p>
+            </div>
+            <div class="popular-in-nigeria-item">
+                <img src="assets/poster1-5.jpg" alt="The Transporter (2022)">
+                <h3>The Transporter (2022)</h3>
+                <p>2007</p>
+            </div>
+            <!-- Add more items to enable scrolling -->
+        </div>
+        <!-- Navigation Buttons -->
+        <button class="nav-button nigeria-prev" onclick="navigateNigeriaShows(-1)">&lt;</button>
+        <button class="nav-button nigeria-next" onclick="navigateNigeriaShows(1)">&gt;</button>
+    </div>
+
+     <!-- base on a true story start here -->
+     <div class="true-story-container">
+        <h2 class="true-story-title"> Based On a True Story &gt;</h2>
+        <div class="true-story-carousel">
+            <div class="true-story-item">
+                <img src="assets/poster1-5.jpg" alt="Wiseguy">
+                <h3>Wiseguy</h3>
+                <p>4 seasons</p>
+            </div>
+            <div class="true-story-item">
+                <img src="assets/poster1-5.jpg" alt="Pee-wee's Playhouse">
+                <h3>Pee-wee's Playhouse</h3>
+                <p>5 seasons</p>
+            </div>
+            <div class="true-story-item">
+                <img src="assets/poster1-5.jpg" alt="Farscape">
+                <h3>Farscape</h3>
+                <p>4 seasons</p>
+            </div>
+            <div class="true-story-item">
+                <img src="assets/poster1-5.jpg" alt="21 Jump Street">
+                <h3>21 Jump Street</h3>
+                <p>5 seasons</p>
+            </div>
+            <div class="true-story-item">
+                <img src="assets/poster1-5.jpg" alt="Top Million Dollar Agent">
+                <h3>Top Million Dollar Agent</h3>
+                <p>6 seasons</p>
+            </div>
+            <div class="true-story-item">
+                <img src="assets/poster1-5.jpg" alt="The Transporter (2022)">
+                <h3>The Transporter (2022)</h3>
+                <p>3 seasons</p>
+            </div>
+            <div class="true-story-item">
+                <img src="assets/poster1-5.jpg" alt="Wiseguy">
+                <h3>Wiseguy</h3>
+                <p>4 seasons</p>
+            </div>
+            <div class="true-story-item">
+                <img src="assets/poster1-5.jpg" alt="Pee-wee's Playhouse">
+                <h3>Pee-wee's Playhouse</h3>
+                <p>5 seasons</p>
+            </div>
+            <div class="true-story-item">
+                <img src="assets/poster1-5.jpg" alt="Farscape">
+                <h3>Farscape</h3>
+                <p>4 seasons</p>
+            </div>
+            <div class="true-story-item">
+                <img src="assets/poster1-5.jpg" alt="21 Jump Street">
+                <h3>21 Jump Street</h3>
+                <p>5 seasons</p>
+            </div>
+            <div class="true-story-item">
+                <img src="assets/poster1-5.jpg" alt="Top Million Dollar Agent">
+                <h3>Top Million Dollar Agent</h3>
+                <p>6 seasons</p>
+            </div>
+            <div class="true-story-item">
+                <img src="assets/poster1-5.jpg" alt="The Transporter (2022)">
+                <h3>The Transporter (2022)</h3>
+                <p>3 seasons</p>
+            </div>
+            <!-- Add more items to enable scrolling -->
+        </div>
+        <!-- Navigation Buttons -->
+        <button class="nav-button story-prev" onclick="navigateTrueStoryShows(-1)">&lt;</button>
+        <button class="nav-button story-next" onclick="navigateTrueStoryShows(1)">&gt;</button>
+    </div>
+
+    <!-- holyday therapy start here -->
+    <div class="holyday-therapy-container">
+        <h2 class="holyday-title">Holyday Therapy &gt;</h2>
+        <div class="holyday-therapy-carousel">
+            <div class="holyday-therapy-item">
+                <img src="assets/poster1-6.jpg" alt="Wiseguy">
+                <h3>Wiseguy</h3>
+                <p>4 seasons</p>
+            </div>
+            <div class="holyday-therapy-item">
+                <img src="assets/poster1-6.jpg" alt="Pee-wee's Playhouse">
+                <h3>Pee-wee's Playhouse</h3>
+                <p>5 seasons</p>
+            </div>
+            <div class="holyday-therapy-item">
+                <img src="assets/poster1-6.jpg" alt="Farscape">
+                <h3>Farscape</h3>
+                <p>4 seasons</p>
+            </div>
+            <div class="holyday-therapy-item">
+                <img src="assets/poster1-6.jpg" alt="21 Jump Street">
+                <h3>21 Jump Street</h3>
+                <p>5 seasons</p>
+            </div>
+            <div class="holyday-therapy-item">
+                <img src="assets/poster1-6.jpg" alt="Top Million Dollar Agent">
+                <h3>Top Million Dollar Agent</h3>
+                <p>6 seasons</p>
+            </div>
+            <div class="holyday-therapy-item">
+                <img src="assets/poster1-6.jpg" alt="The Transporter (2022)">
+                <h3>The Transporter (2022)</h3>
+                <p>3 seasons</p>
+            </div>
+            <div class="holyday-therapy-item">
+                <img src="assets/poster1-6.jpg" alt="Wiseguy">
+                <h3>Wiseguy</h3>
+                <p>4 seasons</p>
+            </div>
+            <div class="holyday-therapy-item">
+                <img src="assets/poster1-6.jpg" alt="Pee-wee's Playhouse">
+                <h3>Pee-wee's Playhouse</h3>
+                <p>5 seasons</p>
+            </div>
+            <div class="holyday-therapy-item">
+                <img src="assets/poster1-6.jpg" alt="Farscape">
+                <h3>Farscape</h3>
+                <p>4 seasons</p>
+            </div>
+            <div class="holyday-therapy-item">
+                <img src="assets/poster1-6.jpg" alt="21 Jump Street">
+                <h3>21 Jump Street</h3>
+                <p>5 seasons</p>
+            </div>
+            <div class="holyday-therapy-item">
+                <img src="assets/poster1-6.jpg" alt="Top Million Dollar Agent">
+                <h3>Top Million Dollar Agent</h3>
+                <p>6 seasons</p>
+            </div>
+            <div class="holyday-therapy-item">
+                <img src="assets/poster1-6.jpg" alt="The Transporter (2022)">
+                <h3>The Transporter (2022)</h3>
+                <p>3 seasons</p>
+            </div>
+            <!-- Add more items to enable scrolling -->
+        </div>
+        <!-- Navigation Buttons -->
+        <button class="nav-button holyday-prev" onclick="navigateHolydayShows(-1)">&lt;</button>
+        <button class="nav-button holyday-next" onclick="navigateHolydayShows(1)">&gt;</button>
+    </div>
+
+     <!-- footer start here -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-sections">
+                <div class="footer-section">
+                    <h3>COMPANY</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>PARTNERS</h3>
+                    <ul>
+                        <li><a href="#">Advertise with Us</a></li>
+                        <li><a href="#">Partner with Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>PRESS</h3>
+                    <ul>
+                        <li><a href="#">Press Releases</a></li>
+                        <li><a href="#">Flexico in News</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="devices-section">
+                <h4>AVAILABLE ON ALL LEADING STREAMING DEVICES</h4>
+                <div class="device-logos">
+                    <div class="device-logo">Roku</div>
+                    <div class="device-logo">Fire TV</div>
+                    <div class="device-logo">Xfinity</div>
+                    <div class="device-logo">Apple TV</div>
+                    <div class="device-logo">iOS</div>
+                    <div class="device-logo">Android</div>
+                    <div class="device-logo">Windows</div>
+                    <div class="device-logo">LG</div>
+                    <div class="device-logo">COX</div>
+                    <div class="device-logo">Rogers</div>
+                    <div class="device-logo">Shaw</div>
+                    <div class="device-logo">Kindle</div>
+                    <div class="device-logo">Samsung</div>
+                    <div class="device-logo">VIDAA</div>
+                    <div class="device-logo">VIZIO</div>
+                    <div class="device-logo">Xbox</div>
+                    <div class="device-logo">XUMO</div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Flexico, All rights reserved. Design by Tordue Donald.</p>
+                <p>
+                    <a href="#">Term of use</a> | 
+                    <a href="#">Privacy policy</a> | 
+                    <a href="#">Cookie policy</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for the movie review section functionality -->
+    <script>
+            const reviewCarousel = document.getElementById('reviewCarousel');
+const prevReviewButton = document.getElementById('prevButton');
+const nextReviewButton = document.getElementById('nextButton');
+let reviewCurrentIndex = 0;
+
+function updateReviewCarousel() {
+    const itemWidth = reviewCarousel.children[0].offsetWidth;
+    reviewCarousel.style.transform = `translateX(-${reviewCurrentIndex * itemWidth}px)`;
+    prevReviewButton.disabled = reviewCurrentIndex === 0;
+    nextReviewButton.disabled = reviewCurrentIndex >= reviewCarousel.children.length - getVisibleReviewItems();
+}
+
+function getVisibleReviewItems() {
+    const viewportWidth = window.innerWidth;
+    if (viewportWidth < 480) return 1;
+    if (viewportWidth < 768) return 2;
+    if (viewportWidth < 1024) return 3;
+    return 4;
+}
+
+prevReviewButton.addEventListener('click', () => {
+    if (reviewCurrentIndex > 0) {
+        reviewCurrentIndex--;
+        updateReviewCarousel();
+    }
+});
+
+nextReviewButton.addEventListener('click', () => {
+    if (reviewCurrentIndex < reviewCarousel.children.length - getVisibleReviewItems()) {
+        reviewCurrentIndex++;
+        updateReviewCarousel();
+    }
+});
+
+window.addEventListener('resize', updateReviewCarousel);
+updateReviewCarousel();
+    </script>
+
+    <!-- JavaScript for the Holyday Therapy carousel functionality -->
+<script>
+    const holydayCarousel = document.querySelector('.holyday-therapy-carousel');
+    const holydayPrevBtn = document.querySelector('.nav-button.holyday-prev');
+    const holydayNextBtn = document.querySelector('.nav-button.holyday-next');
+    let holydayCurrentIndex = 0;
+
+    // Function to calculate the number of visible items based on container size
+    function getHolydayVisibleItems() {
+        const containerWidth = holydayCarousel.offsetWidth;
+        const itemWidth = holydayCarousel.querySelector('.carousel-item').offsetWidth;
+        return Math.floor(containerWidth / itemWidth);
+    }
+
+    // Function to handle carousel navigation
+    function navigateHolydayShows(direction) {
+        const items = holydayCarousel.querySelectorAll('.carousel-item');
+        const visibleItems = getHolydayVisibleItems();
+
+        // Update the current index based on direction and visible items
+        holydayCurrentIndex += direction * visibleItems;
+        holydayCurrentIndex = Math.max(0, Math.min(holydayCurrentIndex, items.length - visibleItems));
+
+        // Calculate the scroll amount based on the current item
+        const scrollAmount = items[holydayCurrentIndex].offsetLeft - holydayCarousel.offsetLeft;
+        holydayCarousel.scrollTo({
+            left: scrollAmount,
+            behavior: 'smooth'
+        });
+
+        // Update the visibility of the navigation buttons
+        updateHolydayButtons();
+    }
+
+    // Function to update the visibility of navigation buttons
+    function updateHolydayButtons() {
+        const items = holydayCarousel.querySelectorAll('.carousel-item');
+        const visibleItems = getHolydayVisibleItems();
+
+        // Disable/enable the previous button
+        holydayPrevBtn.disabled = holydayCurrentIndex <= 0;
+
+        // Disable/enable the next button
+        holydayNextBtn.disabled = holydayCurrentIndex >= items.length - visibleItems;
+    }
+
+    // Initial button setup
+    updateHolydayButtons();
+
+    // Handle window resizing
+    window.addEventListener('resize', () => {
+        holydayCurrentIndex = 0;
+        holydayCarousel.scrollTo({ left: 0 });
+        updateHolydayButtons();
+    });
+
+    // Update the current index when the carousel is scrolled
+    holydayCarousel.addEventListener('scroll', () => {
+        const items = holydayCarousel.querySelectorAll('.carousel-item');
+        holydayCurrentIndex = Math.round(holydayCarousel.scrollLeft / items[0].offsetWidth);
+        updateHolydayButtons();
+    });
+
+    // Add event listeners to the previous and next buttons
+    holydayPrevBtn.addEventListener('click', () => navigateHolydayShows(-1));
+    holydayNextBtn.addEventListener('click', () => navigateHolydayShows(1));
+</script>
+
+   <!-- JavaScript for the Based on a True Story carousel functionality -->
+<script>
+    const trueStoryCarousel = document.querySelector('.true-story-carousel');
+    const trueStoryPrevBtn = document.querySelector('.nav-button.story-prev');
+    const trueStoryNextBtn = document.querySelector('.nav-button.story-next');
+    let trueStoryCurrentIndex = 0;
+
+    // Function to calculate the number of visible items based on container size
+    function getTrueStoryVisibleItems() {
+        const containerWidth = trueStoryCarousel.offsetWidth;
+        const itemWidth = trueStoryCarousel.querySelector('.carousel-item').offsetWidth;
+        return Math.floor(containerWidth / itemWidth);
+    }
+
+    // Function to handle carousel navigation
+    function navigateTrueStoryShows(direction) {
+        const items = trueStoryCarousel.querySelectorAll('.carousel-item');
+        const visibleItems = getTrueStoryVisibleItems();
+
+        // Update the current index based on direction and visible items
+        trueStoryCurrentIndex += direction * visibleItems;
+        trueStoryCurrentIndex = Math.max(0, Math.min(trueStoryCurrentIndex, items.length - visibleItems));
+
+        // Calculate the scroll amount based on the current item
+        const scrollAmount = items[trueStoryCurrentIndex].offsetLeft - trueStoryCarousel.offsetLeft;
+        trueStoryCarousel.scrollTo({
+            left: scrollAmount,
+            behavior: 'smooth'
+        });
+
+        // Update the visibility of the navigation buttons
+        updateTrueStoryButtons();
+    }
+
+    // Function to update the visibility of navigation buttons
+    function updateTrueStoryButtons() {
+        const items = trueStoryCarousel.querySelectorAll('.carousel-item');
+        const visibleItems = getTrueStoryVisibleItems();
+
+        // Disable/enable the previous button
+        trueStoryPrevBtn.disabled = trueStoryCurrentIndex <= 0;
+
+        // Disable/enable the next button
+        trueStoryNextBtn.disabled = trueStoryCurrentIndex >= items.length - visibleItems;
+    }
+
+    // Initial button setup
+    updateTrueStoryButtons();
+
+    // Handle window resizing
+    window.addEventListener('resize', () => {
+        trueStoryCurrentIndex = 0;
+        trueStoryCarousel.scrollTo({ left: 0 });
+        updateTrueStoryButtons();
+    });
+
+    // Update the current index when the carousel is scrolled
+    trueStoryCarousel.addEventListener('scroll', () => {
+        const items = trueStoryCarousel.querySelectorAll('.carousel-item');
+        trueStoryCurrentIndex = Math.round(trueStoryCarousel.scrollLeft / items[0].offsetWidth);
+        updateTrueStoryButtons();
+    });
+
+    // Add event listeners to the previous and next buttons
+    trueStoryPrevBtn.addEventListener('click', () => navigateTrueStoryShows(-1));
+    trueStoryNextBtn.addEventListener('click', () => navigateTrueStoryShows(1));
+</script>
+
+    <!-- JavaScript for the most popular in nigeria functionality -->
+    <script>
+        const nigeriaCarousel = document.querySelector('.popular-in-nigeria-carousel');
+        const nigeriaPrevBtn = document.querySelector('.nav-button.nigeria-prev');
+        const nigeriaNextBtn = document.querySelector('.nav-button.nigeria-next');
+        let nigeriaCurrentIndex = 0;
+    
+        function getNigeriaVisibleItems() {
+            const containerWidth = nigeriaCarousel.offsetWidth;
+            const itemWidth = nigeriaCarousel.querySelector('.carousel-item').offsetWidth;
+            return Math.floor(containerWidth / itemWidth);
+        }
+    
+        function navigateNigeriaShows(direction) {
+            const items = nigeriaCarousel.querySelectorAll('.carousel-item');
+            const visibleItems = getNigeriaVisibleItems();
+            
+            nigeriaCurrentIndex += direction * visibleItems;
+            nigeriaCurrentIndex = Math.max(0, Math.min(nigeriaCurrentIndex, items.length - visibleItems));
+            
+            const scrollAmount = items[nigeriaCurrentIndex].offsetLeft - nigeriaCarousel.offsetLeft;
+            nigeriaCarousel.scrollTo({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
+            
+            updateNigeriaButtons();
+        }
+    
+        function updateNigeriaButtons() {
+            const items = nigeriaCarousel.querySelectorAll('.carousel-item');
+            const visibleItems = getNigeriaVisibleItems();
+            
+            nigeriaPrevBtn.disabled = nigeriaCurrentIndex <= 0;
+            nigeriaNextBtn.disabled = nigeriaCurrentIndex >= items.length - visibleItems;
+        }
+    
+        // Initial button setup
+        updateNigeriaButtons();
+    
+        // Handle resizing
+        window.addEventListener('resize', () => {
+            nigeriaCurrentIndex = 0;
+            nigeriaCarousel.scrollTo({ left: 0 });
+            updateNigeriaButtons();
+        });
+    
+        // Update current index on scroll
+        nigeriaCarousel.addEventListener('scroll', () => {
+            const items = nigeriaCarousel.querySelectorAll('.carousel-item');
+            nigeriaCurrentIndex = Math.round(nigeriaCarousel.scrollLeft / items[0].offsetWidth);
+            updateNigeriaButtons();
+        });
+    
+        // Add event listeners to buttons
+        nigeriaPrevBtn.addEventListener('click', () => navigateNigeriaShows(-1));
+        nigeriaNextBtn.addEventListener('click', () => navigateNigeriaShows(1));
+        console.log(scrollAmount)
+    </script>        
+
+    <!-- JavaScript for the cast section functionality -->
+    <script>
+        const carousel = document.getElementById('castCarousel');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let currentPosition = 0;
+
+        const castData = [
+            { name: 'Judith O\'Dea', role: 'Barbara', image: 'assets/cast1-1.jpg' },
+            { name: 'Duane Jones', role: 'Ben', image: 'assets/cast1-2.jpg' },
+            { name: 'Marilyn Eastman', role: 'Helen Cooper', image: 'assets/cast1-3.jpg' },
+            { name: 'Karl Hardman', role: 'Harry Cooper', image: 'assets/cast1-4.jpg' },
+            { name: 'Judith Ridley', role: 'Judy', image: 'assets/cast1-5.jpg' },
+            { name: 'Keith Wayne', role: 'Tom', image: 'assets/cast1-6.jpg' },
+            { name: 'Kyra Schon', role: 'Karen Cooper / Corpse Girl', image: 'assets/cast1-7.jpg' },
+            { name: 'Charles Craig', role: 'TV Newscaster / Zombie', image: 'assets/cast1-8.jpg' },
+            { name: 'Judith O\'Dea', role: 'Barbara', image: 'assets/cast1-1.jpg' },
+            { name: 'Duane Jones', role: 'Ben', image: 'assets/cast1-2.jpg' },
+            { name: 'Marilyn Eastman', role: 'Helen Cooper', image: 'assets/cast1-3.jpg' },
+            { name: 'Karl Hardman', role: 'Harry Cooper', image: 'assets/cast1-4.jpg' },
+            { name: 'Judith Ridley', role: 'Judy', image: 'assets/cast1-5.jpg' },
+            { name: 'Keith Wayne', role: 'Tom', image: 'assets/cast1-6.jpg' },
+            { name: 'Kyra Schon', role: 'Karen Cooper / Corpse Girl', image: 'assets/cast1-7.jpg' },
+            { name: 'Charles Craig', role: 'TV Newscaster / Zombie', image: 'assets/cast1-8.jpg' },
+            
+            // Add more cast members if needed
+        ];
+
+        function createCastItem(member) {
+            const item = document.createElement('div');
+            item.className = 'cast-carousel-item';
+            item.innerHTML = `
+                <img src="${member.image || 'https://example.com/placeholder.jpg'}" alt="${member.name}">
+                <div class="name">${member.name}</div>
+                <div class="role">${member.role}</div>
+            `;
+            return item;
+        }
+
+        castData.forEach(member => {
+            carousel.appendChild(createCastItem(member));
+        });
+
+        function slideCarousel(direction) {
+            const itemWidth = carousel.children[0].offsetWidth;
+            const maxPosition = -(carousel.children.length - getVisibleItems()) * itemWidth;
+
+            if (direction === 'next' && currentPosition > maxPosition) {
+                currentPosition -= itemWidth;
+            } else if (direction === 'prev' && currentPosition < 0) {
+                currentPosition += itemWidth;
+            }
+
+            carousel.style.transform = `translateX(${currentPosition}px)`;
+            updateButtons();
+        }
+
+        function updateButtons() {
+            prevBtn.style.display = currentPosition < 0 ? 'block' : 'none';
+            nextBtn.style.display = currentPosition > -(carousel.scrollWidth - carousel.clientWidth) ? 'block' : 'none';
+        }
+
+        function getVisibleItems() {
+            if (window.innerWidth > 1024) return 8;
+            if (window.innerWidth > 768) return 6;
+            if (window.innerWidth > 480) return 4;
+            return 2;
+        }
+
+        prevBtn.addEventListener('click', () => slideCarousel('prev'));
+        nextBtn.addEventListener('click', () => slideCarousel('next'));
+        window.addEventListener('resize', () => {
+            currentPosition = 0;
+            carousel.style.transform = `translateX(0)`;
+            updateButtons();
+        });
+
+        updateButtons();
+    </script>
+    <!-- JavaScript for the search sugestion functionality -->
+    <script>
+        // Sample movie list (you can replace this with a database query or API call)
+const movieList = [
+    "The Shawshank Redemption",
+    "The Godfather",
+    "The Dark Knight",
+    "Pulp Fiction",
+    "Fight Club",
+    "Forrest Gump",
+    "Inception",
+    "Goodfellas",
+    "The Matrix",
+    "Interstellar"
+];
+
+// Suggest movie names based on user input
+function suggestMovies() {
+    const input = document.getElementById('movie-search').value.toLowerCase();
+    const suggestionsBox = document.getElementById('suggestions');
+    
+    // Clear previous suggestions
+    suggestionsBox.innerHTML = '';
+
+    if (input.length === 0) {
+        return; // No input, no suggestions
+    }
+
+    // Filter the movie list based on input
+    const filteredMovies = movieList.filter(movie => movie.toLowerCase().includes(input));
+
+    // Display the filtered movie list
+    filteredMovies.forEach(movie => {
+        const suggestion = document.createElement('div');
+        suggestion.textContent = movie;
+        suggestion.onclick = () => selectMovie(movie);
+        suggestionsBox.appendChild(suggestion);
+    });
+}
+
+// Fill the search bar when a suggestion is clicked
+function selectMovie(movie) {
+    document.getElementById('movie-search').value = movie;
+    document.getElementById('suggestions').innerHTML = ''; // Clear suggestions
+}
+
+    // second part of the search functionality
+    function suggestMovies() {
+    const input = document.getElementById('movie-search').value.toLowerCase();
+    const suggestionsBox = document.getElementById('suggestions');
+    
+    // Clear previous suggestions
+    suggestionsBox.innerHTML = '';
+
+    if (input.length === 0) {
+        return;
+    }
+
+    // Example API call
+    fetch(`/search-movies?query=${input}`)
+        .then(response => response.json())
+        .then(data => {
+            data.movies.forEach(movie => {
+                const suggestion = document.createElement('div');
+                suggestion.textContent = movie.title;
+                suggestion.onclick = () => selectMovie(movie.title);
+                suggestionsBox.appendChild(suggestion);
+            });
+        });
+}
+    </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const movieData = JSON.parse(localStorage.getItem('selectedMovie'));
+    if (movieData) {
+        document.getElementById('movie-title').textContent = movieData.title;
+        document.getElementById('movie-poster').src = movieData.poster;
+        document.getElementById('movie-description').textContent = movieData.description;
+        document.getElementById('movie-rating').textContent = `Rating: ${movieData.rating}`;
+        document.getElementById('movie-release-date').textContent = `Release Date: ${movieData.releaseDate}`;
+        document.getElementById('movie-runtime').textContent = movieData.runtime;
+        document.getElementById('movie-genres').textContent = movieData.genres;
+        document.getElementById('movie-cast').textContent = `Cast: ${movieData.cast.join(', ')}`;
+    } else {
+        console.error('Movie data not found in localStorage');
+    }
+});
+
+ </script>
+
+ <script src="script-api.js"></script>
+  <script src="script.js"></script>  
+</body>
+</html>
